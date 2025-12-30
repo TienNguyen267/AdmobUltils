@@ -1,138 +1,94 @@
-#
-#  Be sure to run `pod spec lint AdmobUltils.podspec' to ensure this is a
-#  valid spec and to remove all comments including this before submitting the spec.
-#
-#  To learn more about Podspec attributes see https://guides.cocoapods.org/syntax/podspec.html
-#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
-#
-
 Pod::Spec.new do |spec|
 
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  These will help people to find your library, and whilst it
-  #  can feel like a chore to fill in it's definitely to your advantage. The
-  #  summary should be tweet-length, and the description more in depth.
-  #
-
+  # ―――  Spec Metadata  ――― #
   spec.name         = "AdmobUltils"
   spec.version      = "0.0.1"
-  spec.summary      = "A short description of AdmobUltils."
+  spec.summary      = "AdMob + mediation + Firebase + UI helpers for iOS apps."
 
-  # This description is used to generate tags and improve search results.
-  #   * Think: What does it do? Why did you write it? What is the focus?
-  #   * Try to keep it short, snappy and to the point.
-  #   * Write the description between the DESC delimiters below.
-  #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-                   DESC
+AdmobUltils is a small utility library that centralizes:
+- Google Mobile Ads SDK + mediation adapters
+- Firebase (Analytics, Remote Config, Crashlytics)
+- Consent (GoogleUserMessagingPlatform)
+- Facebook SDK
+- Lottie animations
+- SwiftUI shimmer helpers
 
-  spec.homepage     = "http://EXAMPLE/AdmobUltils"
-  # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+for apps like FallingFilter.
+  DESC
 
+  spec.homepage     = "https://github.com/TienNguyen267/AdmobUltils"
 
-  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Licensing your code is important. See https://choosealicense.com for more info.
-  #  CocoaPods will detect a license file if there is a named LICENSE*
-  #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
-  #
+  # ―――  License  ――― #
+  spec.license      = { :type => "MIT" }
 
-  spec.license      = "MIT (example)"
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  # ―――  Author  ――― #
+  spec.author       = { "VietTienNguyen" => "viettiennguyen2607@gmail.com" }
 
+  # ―――  Platform  ――― #
+  spec.ios.deployment_target = "13.0"
+  spec.swift_version         = "5.0"
 
-  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the authors of the library, with email addresses. Email addresses
-  #  of the authors are extracted from the SCM log. E.g. $ git log. CocoaPods also
-  #  accepts just a name if you'd rather not provide an email address.
-  #
-  #  Specify a social_media_url where others can refer to, for example a twitter
-  #  profile URL.
-  #
+  # ―――  Source Location  ――― #
+  spec.source = {
+    :git => "https://github.com/TienNguyen267/AdmobUltils.git",
+    :tag => spec.version.to_s
+  }
 
-  spec.author             = { "VietTienNguyen" => "viettiennguyen2607@gmail.com" }
-  # Or just: spec.author    = "VietTienNguyen"
-  # spec.authors            = { "VietTienNguyen" => "viettiennguyen2607@gmail.com" }
-  # spec.social_media_url   = "https://twitter.com/VietTienNguyen"
+  # ―――  Source Code  ――― #
+  # Gợi ý: code Swift nằm trong Sources/AdmobUltils/...
+  spec.source_files  = "Sources/**/*.{swift}"
 
-  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If this Pod runs only on iOS or OS X, then specify the platform and
-  #  the deployment target. You can optionally include the target after the platform.
-  #
+  # Nếu sau này có resource:
+  # spec.resource_bundles = {
+  #   "AdmobUltilsResources" => ["Sources/AdmobUltils/Resources/**/*"]
+  # }
 
-  # spec.platform     = :ios
-  # spec.platform     = :ios, "5.0"
+  # ―――  Dependencies  ――― #
+  # 1. SolarEngine + mediation pods
+  spec.dependency "SolarEngineSDKiOSInter", "~> 1.3.1.0"
+  spec.dependency "GoogleMobileAdsMediationFacebook"
+  spec.dependency "GoogleMobileAdsMediationMintegral"
+  spec.dependency "GoogleMobileAdsMediationIronSource"
+  spec.dependency "GoogleMobileAdsMediationAppLovin"
+  spec.dependency "GoogleMobileAdsMediationPangle"
+  spec.dependency "GoogleMobileAdsMediationVungle"
+  spec.dependency "GoogleMobileAdsMediationUnity"
 
-  #  When using multiple platforms
-  # spec.ios.deployment_target = "5.0"
-  # spec.osx.deployment_target = "10.7"
-  # spec.watchos.deployment_target = "2.0"
-  # spec.tvos.deployment_target = "9.0"
-  # spec.visionos.deployment_target = "1.0"
+  # 2. Google Mobile Ads SDK (thay cho SPM GoogleMobileAds)
+  spec.dependency "Google-Mobile-Ads-SDK"
 
+  # 3. Consent SDK (GoogleUserMessagingPlatform)
+  spec.dependency "GoogleUserMessagingPlatform"
 
-  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the location from where the source should be retrieved.
-  #  Supports git, hg, bzr, svn and HTTP.
-  #
+  # 4. Firebase
+  spec.dependency "FirebaseCore"
+  spec.dependency "FirebaseAnalytics"
+  spec.dependency "FirebaseRemoteConfig"
+  spec.dependency "FirebaseCrashlytics"
 
-  spec.source       = { :git => "http://EXAMPLE/AdmobUltils.git", :tag => "#{spec.version}" }
+  # 5. Facebook iOS SDK (tối thiểu CoreKit)
+  # Có thể thêm LoginKit/ShareKit nếu bạn dùng
+  spec.dependency "FBSDKCoreKit"
+  # spec.dependency "FBSDKLoginKit"
+  # spec.dependency "FBSDKShareKit"
 
+  # 6. Lottie
+  # Pod name là 'lottie-ios', module bạn import trong Swift là `Lottie`
+  spec.dependency "lottie-ios"
 
-  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  CocoaPods is smart about how it includes source code. For source files
-  #  giving a folder will include any swift, h, m, mm, c & cpp files.
-  #  For header files it will include any header in the folder.
-  #  Not including the public_header_files will make all headers public.
-  #
+  # 7. SwiftUI-Shimmer
+  # Repo có hỗ trợ CocoaPods (pod 'SwiftUI-Shimmer', :git => ...).
+  # Nếu podspec của nó đã được publish lên trunk thì dòng dưới sẽ ok.
+  # Nếu lint/publish bị lỗi không tìm thấy, thì giữ SwiftUI-Shimmer ở Podfile app.
+  spec.dependency "SwiftUI-Shimmer"
 
-  spec.source_files  = "Classes", "Classes/**/*.{h,m}"
-  spec.exclude_files = "Classes/Exclude"
-
-  # spec.public_header_files = "Classes/**/*.h"
-
-
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # spec.resource  = "icon.png"
-  # spec.resources = "Resources/*.png"
-
-  # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # spec.framework  = "SomeFramework"
-  # spec.frameworks = "SomeFramework", "AnotherFramework"
-
-  # spec.library   = "iconv"
-  # spec.libraries = "iconv", "xml2"
-
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
-  # spec.requires_arc = true
-
-  # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # spec.dependency "JSONKit", "~> 1.4"
-
+  # ⚠️ Lưu ý về modular_headers:
+  # Các dòng:
+  #   pod 'GoogleUtilities', :modular_headers => true
+  #   pod 'GoogleDataTransport', :modular_headers => true
+  #   pod 'nanopb', :modular_headers => true
+  #   pod 'FirebaseABTesting', :modular_headers => true
+  # phải config trong Podfile của app, không set kiểu này trong podspec được.
 end
+
